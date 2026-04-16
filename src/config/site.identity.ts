@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'ft7m4q8x2v',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Future They',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Independent editorial platform',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Forward-looking stories and commentary',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A focused article-led platform for insights, publishing, and long-form updates.',
+    'A clean editorial site for future-focused articles, stories, and perspective pieces.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'futurethey.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://futurethey.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',
