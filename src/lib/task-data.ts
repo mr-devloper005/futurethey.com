@@ -2,6 +2,7 @@ import { SITE_CONFIG, type TaskKey } from "./site-config";
 import { fetchSiteFeed, type SiteFeed, type SitePost } from "./site-connector";
 import { getMockPostsForTask } from "./mock-posts";
 import { isValidCategory } from "./categories";
+import { getHomeArticleSamplesForFeed, getHomeArticleSampleBySlug } from "@/config/home.article.samples";
 
 const getTaskContentType = (task: TaskKey) =>
   SITE_CONFIG.tasks.find((item) => item.key === task)?.contentType || task;
@@ -56,10 +57,17 @@ export const fetchTaskPosts = async (
 
     const freshFeed = await fetchSiteFeed(limit * 6, { fresh: true });
     const filtered = pickTaskPosts(freshFeed);
-    return filtered.length || !allowMockFallback
-      ? filtered
-      : getMockPostsForTask(task).slice(0, limit);
+    if (filtered.length) return filtered;
+    if (task === "article") {
+      const homeSamples = getHomeArticleSamplesForFeed();
+      if (homeSamples.length) return homeSamples.slice(0, limit);
+    }
+    return allowMockFallback ? getMockPostsForTask(task).slice(0, limit) : [];
   } catch {
+    if (task === "article") {
+      const homeSamples = getHomeArticleSamplesForFeed();
+      if (homeSamples.length) return homeSamples.slice(0, limit);
+    }
     return allowMockFallback ? getMockPostsForTask(task).slice(0, limit) : [];
   }
 };
@@ -79,7 +87,12 @@ export const fetchTaskPostBySlug = async (task: TaskKey, slug: string) => {
     const freshMatch = resolveFromFeed(freshFeed);
     if (freshMatch) return freshMatch;
   } catch {
-    // fall through to mock data
+    // fall through to samples / mock data
+  }
+
+  if (task === "article") {
+    const sample = getHomeArticleSampleBySlug(slug);
+    if (sample) return sample;
   }
 
   return allowMockFallback

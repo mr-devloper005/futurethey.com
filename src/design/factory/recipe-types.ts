@@ -20,6 +20,8 @@ export type SiteRecipe = {
   footerTemplate?: FooterLayoutKey
   motionPack?: MotionPackKey
   primaryTask: TaskKey
+  /** When set, main navigation and discovery surfaces emphasize primary + secondary only. */
+  secondaryTask?: TaskKey
   enabledTasks: TaskKey[]
   taskTemplates: Partial<Record<TaskKey, TaskLayoutKey>>
   manualOverrides: {

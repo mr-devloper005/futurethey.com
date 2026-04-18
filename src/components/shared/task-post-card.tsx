@@ -56,27 +56,27 @@ const getImageUrl = (post: SitePost, content: ListingContent) => {
 
 const cardStyles = {
   'listing-elevated': {
-    frame: 'rounded-[1.9rem] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)] hover:-translate-y-1 hover:shadow-[0_28px_75px_rgba(15,23,42,0.14)]',
+    frame: 'rounded-sm border border-slate-200/90 bg-white shadow-[0_18px_48px_rgba(15,23,42,0.07)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_64px_rgba(15,23,42,0.11)]',
     muted: 'text-slate-600',
     title: 'text-slate-950',
-    badge: 'bg-slate-950 text-white',
+    badge: 'bg-slate-900 text-white',
   },
   'editorial-feature': {
-    frame: 'rounded-[1.8rem] border border-[rgba(125,83,45,0.12)] bg-[#fffaf3] shadow-[0_18px_55px_rgba(89,52,24,0.1)] hover:-translate-y-1 hover:shadow-[0_26px_75px_rgba(89,52,24,0.14)]',
-    muted: 'text-[#71584b]',
-    title: 'text-[#2b1d17]',
-    badge: 'bg-[#2b1d17] text-[#fff3df]',
+    frame: 'rounded-sm border border-[color-mix(in_srgb,var(--ft-burgundy-deep)_14%,transparent)] bg-[color-mix(in_srgb,#fff_94%,var(--ft-cream))] shadow-[0_20px_56px_rgba(94,0,6,0.08)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_70px_rgba(94,0,6,0.12)]',
+    muted: 'text-[color-mix(in_srgb,var(--ft-ink)_58%,#fff)]',
+    title: 'text-[var(--ft-ink)]',
+    badge: 'bg-[var(--ft-burgundy-deep)] text-[var(--ft-cream)]',
   },
   'studio-panel': {
-    frame: 'rounded-[1.9rem] border border-white/10 bg-[linear-gradient(180deg,rgba(7,17,31,0.96),rgba(12,23,43,0.96))] text-white shadow-[0_24px_80px_rgba(15,23,42,0.35)] hover:-translate-y-1 hover:shadow-[0_30px_90px_rgba(15,23,42,0.42)]',
+    frame: 'rounded-sm border border-white/10 bg-[linear-gradient(180deg,rgba(8,14,26,0.96),rgba(18,28,48,0.96))] text-white shadow-[0_28px_80px_rgba(0,0,0,0.38)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_34px_90px_rgba(0,0,0,0.45)]',
     muted: 'text-slate-300',
     title: 'text-white',
-    badge: 'bg-[#8df0c8] text-[#07111f]',
+    badge: 'bg-[var(--ft-cream)] text-[var(--ft-burgundy-deep)]',
   },
   'catalog-grid': {
-    frame: 'rounded-[1.8rem] border border-[rgba(67,78,41,0.14)] bg-[#f8faf1] shadow-[0_18px_58px_rgba(55,65,31,0.1)] hover:-translate-y-1 hover:shadow-[0_28px_70px_rgba(55,65,31,0.14)]',
-    muted: 'text-[#5b664c]',
-    title: 'text-[#1f2617]',
+    frame: 'rounded-sm border border-[color-mix(in_srgb,#3d4a22_16%,transparent)] bg-[#f4f7ec] shadow-[0_18px_50px_rgba(55,65,31,0.09)] transition-[transform,box-shadow] duration-300 hover:-translate-y-0.5 hover:shadow-[0_26px_64px_rgba(55,65,31,0.12)]',
+    muted: 'text-[#4d563f]',
+    title: 'text-[#1a2214]',
     badge: 'bg-[#1f2617] text-[#edf5dc]',
   },
 } as const
@@ -163,21 +163,34 @@ export function TaskPostCard({
 
   if (isBookmarkVariant) {
     return (
-      <Link href={href} className={`group flex h-full flex-row items-start gap-4 overflow-hidden p-5 transition duration-300 ${visualVariant.frame}`}>
-        <div className="mt-1 rounded-full bg-white/10 p-2.5 text-current transition group-hover:scale-105">
+      <Link
+        href={href}
+        className="group flex h-full flex-row items-start gap-4 overflow-hidden rounded-sm border border-slate-200/90 bg-white p-5 shadow-[0_12px_36px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-0.5 hover:border-slate-300 hover:shadow-[0_18px_48px_rgba(15,23,42,0.08)]"
+      >
+        <div className="mt-0.5 rounded-sm border border-slate-200 bg-slate-50 p-2.5 text-slate-700 transition group-hover:border-indigo-200 group-hover:bg-indigo-50">
           <ExternalLink className="h-4 w-4" />
         </div>
         <div className="min-w-0 flex-1">
           <div className="flex flex-wrap items-center gap-2">
-            <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.18em] ${visualVariant.badge}`}>
+            <span className="inline-flex items-center gap-1 rounded-sm bg-slate-900 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.16em] text-white">
               <Tag className="h-3.5 w-3.5" />
               {category}
             </span>
-            {content.location ? <span className={`inline-flex items-center gap-1 text-xs ${visualVariant.muted}`}><MapPin className="h-3.5 w-3.5" />{content.location}</span> : null}
+            {content.location ? (
+              <span className="inline-flex items-center gap-1 text-xs text-slate-500">
+                <MapPin className="h-3.5 w-3.5" />
+                {content.location}
+              </span>
+            ) : null}
           </div>
-          <h3 className={`mt-3 line-clamp-2 text-lg font-semibold leading-snug group-hover:opacity-85 ${visualVariant.title}`}>{post.title}</h3>
-          <p className={`mt-2 line-clamp-3 text-sm leading-7 ${visualVariant.muted}`}>{getExcerpt(content.description || post.summary, compact ? 120 : 180) || 'Explore this bookmark.'}</p>
-          {content.email ? <div className={`mt-3 inline-flex items-center gap-1 text-xs ${visualVariant.muted}`}><Mail className="h-3.5 w-3.5" />{content.email}</div> : null}
+          <h3 className="mt-3 line-clamp-2 text-lg font-semibold leading-snug text-slate-950 group-hover:text-indigo-950">{post.title}</h3>
+          <p className="mt-2 line-clamp-3 text-sm leading-7 text-slate-600">{getExcerpt(content.description || post.summary, compact ? 120 : 180) || 'Open this saved reference.'}</p>
+          {content.email ? (
+            <div className="mt-3 inline-flex items-center gap-1 text-xs text-slate-500">
+              <Mail className="h-3.5 w-3.5" />
+              {content.email}
+            </div>
+          ) : null}
         </div>
       </Link>
     )

@@ -1,10 +1,10 @@
 export const siteIdentity = {
   code: process.env.NEXT_PUBLIC_SITE_CODE || 'ft7m4q8x2v',
   name: process.env.NEXT_PUBLIC_SITE_NAME || 'Future They',
-  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Forward-looking stories and commentary',
+  tagline: process.env.NEXT_PUBLIC_SITE_TAGLINE || 'Essays on what comes next—in work, culture, and everyday life',
   description:
     process.env.NEXT_PUBLIC_SITE_DESCRIPTION ||
-    'A clean editorial site for future-focused articles, stories, and perspective pieces.',
+    'Future They publishes slow, careful reads: reporting, essays, and field notes for people who still finish articles. We cover how cities change, how teams work, and how ideas travel—without the noise of a generic feed.',
   domain: process.env.NEXT_PUBLIC_SITE_DOMAIN || 'futurethey.com',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'https://futurethey.com',
   ogImage: process.env.NEXT_PUBLIC_SITE_OG_IMAGE || '/og-default.png',

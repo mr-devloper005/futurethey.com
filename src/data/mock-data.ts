@@ -742,71 +742,71 @@ export const mockTestimonials: Testimonial[] = [
 
 // Mock Dashboard Stats
 export const mockDashboardStats: DashboardStats = {
-  totalArticles: 12,
-  totalListings: 5,
-  totalAds: 8,
-  totalViews: 45600,
-  totalLikes: 3200,
-  savedItems: 24
+  totalArticles: 38,
+  totalListings: 14,
+  totalAds: 22,
+  totalViews: 128400,
+  totalLikes: 8400,
+  savedItems: 156
 }
 
 // Content Hub Data
 export const mockTeamMembers: TeamMember[] = [
   {
     id: 'team-1',
-    name: 'Avery Brooks',
-    role: 'Head of Community',
+    name: 'Meera Iyer',
+    role: 'Editor-in-chief',
     avatar: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=200&h=200&fit=crop',
-    bio: 'Building programs that connect creators with meaningful collaborations.',
-    location: 'Austin, TX'
+    bio: 'Former business desk; now chases stories where policy meets rent cheques.',
+    location: 'Mumbai'
   },
   {
     id: 'team-2',
-    name: 'Jordan Lee',
-    role: 'Product Lead',
+    name: 'Faraz Siddiqui',
+    role: 'Managing editor',
     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop',
-    bio: 'Designing calm, curated experiences for modern teams.',
-    location: 'San Francisco, CA'
+    bio: 'Keeps the flatplan honest and the corrections human-readable.',
+    location: 'Delhi'
   },
   {
     id: 'team-3',
-    name: 'Priya Desai',
-    role: 'Engineering',
-    avatar: 'https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=200&h=200&fit=crop',
-    bio: 'Focused on reliability, search, and delightful performance.',
-    location: 'New York, NY'
+    name: 'Kavya Nambiar',
+    role: 'Photo director',
+    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop',
+    bio: 'Assigns colour, crop, and caption policy; still carries a film camera on weekends.',
+    location: 'Bengaluru'
   }
 ]
 
 export const mockCommunityEvents: CommunityEvent[] = [
   {
     id: 'event-1',
-    title: 'Weekly Bookmark Jam',
-    date: 'Every Friday',
-    tag: 'Live',
-    description: 'Curate your best links together and learn from fellow members.'
+    title: 'Open pitch night — cities desk',
+    date: 'First Thursday monthly',
+    tag: 'Hybrid',
+    description: 'Five-minute pitches; editors give blunt feedback. RSVP with two clips.'
   },
   {
     id: 'event-2',
-    title: 'Design Systems Roundtable',
-    date: 'April 2',
+    title: 'Fact-checking clinic',
+    date: 'April 22',
     tag: 'Workshop',
-    description: 'Swap processes and audit templates with peers.'
+    description: 'Bring a tricky paragraph; we walk through phone scripts and primary sources.'
   },
   {
     id: 'event-3',
-    title: 'Creator Office Hours',
-    date: 'April 10',
-    tag: 'AMA',
-    description: 'Ask our team anything about your workflow.'
+    title: 'Readers’ salon — housing issue',
+    date: 'May 4',
+    tag: 'Salon',
+    description: 'Discuss the rent cap essay with the reporter; off the record for residents only.'
   }
 ]
 
 export const mockCommunityGroups: CommunityGroup[] = [
-  { id: 'group-1', name: 'Product Leaders', members: 1240, focus: 'Roadmaps and strategy' },
-  { id: 'group-2', name: 'Design Ops', members: 860, focus: 'Systems and governance' },
-  { id: 'group-3', name: 'Frontend Guild', members: 1510, focus: 'UI engineering' },
-  { id: 'group-4', name: 'Remote Teams', members: 930, focus: 'Distributed rituals' }
+  { id: 'group-1', name: 'Freelance researchers', members: 186, focus: 'Court records & RTI' },
+  { id: 'group-2', name: 'Photo stringers', members: 94, focus: 'Field safety & consent' },
+  { id: 'group-3', name: 'Audio producers', members: 52, focus: 'Companion podcasts' },
+  { id: 'group-4', name: 'Student desk', members: 310, focus: 'Mentorship & clips' }
 ]
 
 export const mockPressAssets: PressAsset[] = [
