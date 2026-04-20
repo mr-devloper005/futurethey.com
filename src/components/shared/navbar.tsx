@@ -4,12 +4,11 @@ import { useMemo, useState } from 'react'
 import dynamic from 'next/dynamic'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Search, Menu, X, User, FileText, Building2, LayoutGrid, Tag, Image as ImageIcon, ChevronRight, Sparkles, MapPin, Plus } from 'lucide-react'
+import { Search, Menu, X, User, FileText, Building2, LayoutGrid, Tag, Image as ImageIcon, ChevronRight, Sparkles, MapPin, Plus, Bookmark } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useAuth } from '@/lib/auth-context'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { cn } from '@/lib/utils'
-import { siteContent } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
 import { NAVBAR_OVERRIDE_ENABLED, NavbarOverride } from '@/overrides/navbar'
 
@@ -21,7 +20,7 @@ const NavbarAuthControls = dynamic(() => import('@/components/shared/navbar-auth
 const taskIcons: Record<TaskKey, any> = {
   article: FileText,
   listing: Building2,
-  sbm: LayoutGrid,
+  sbm: Bookmark,
   classified: Tag,
   image: ImageIcon,
   profile: User,
@@ -41,12 +40,12 @@ const variantClasses = {
     mobile: 'border-t border-slate-200/70 bg-white/95',
   },
   'editorial-bar': {
-    shell: 'border-b border-[#d7c4b3] bg-[#fff7ee]/90 text-[#2f1d16] backdrop-blur-xl',
-    logo: 'rounded-full border border-[#dbc6b6] bg-white shadow-sm',
-    active: 'bg-[#2f1d16] text-[#fff4e4]',
-    idle: 'text-[#72594a] hover:bg-[#f2e5d4] hover:text-[#2f1d16]',
-    cta: 'rounded-full bg-[#2f1d16] text-[#fff4e4] hover:bg-[#452920]',
-    mobile: 'border-t border-[#dbc6b6] bg-[#fff7ee]',
+    shell: 'border-b border-[color-mix(in_srgb,var(--ft-burgundy-deep)_22%,transparent)] bg-[color-mix(in_srgb,var(--ft-cream)_78%,#fff)]/95 text-[var(--ft-ink)] backdrop-blur-xl',
+    logo: 'rounded-sm border border-[color-mix(in_srgb,var(--ft-burgundy-deep)_25%,transparent)] bg-[var(--ft-cream)]/90 shadow-[0_1px_0_rgba(94,0,6,0.06)]',
+    active: 'bg-[var(--ft-burgundy-deep)] text-[var(--ft-cream)]',
+    idle: 'text-[color-mix(in_srgb,var(--ft-ink)_72%,#fff)] hover:bg-[color-mix(in_srgb,var(--ft-cream)_55%,#fff)] hover:text-[var(--ft-ink)]',
+    cta: 'rounded-sm bg-[var(--ft-burgundy)] text-[var(--ft-cream)] shadow-[0_10px_28px_rgba(94,0,6,0.22)] hover:bg-[var(--ft-ember)]',
+    mobile: 'border-t border-[color-mix(in_srgb,var(--ft-burgundy-deep)_18%,transparent)] bg-[color-mix(in_srgb,var(--ft-cream)_88%,#fff)]',
   },
   'floating-bar': {
     shell: 'border-b border-transparent bg-transparent text-white',
@@ -97,7 +96,19 @@ export function Navbar() {
   const { isAuthenticated } = useAuth()
   const { recipe } = getFactoryState()
 
-  const navigation = useMemo(() => SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile'), [])
+  const navigation = useMemo(() => {
+    const base = SITE_CONFIG.tasks.filter((task) => task.enabled && task.key !== 'profile')
+    if (recipe.navbar === 'editorial-bar') {
+      const primaryOnly = base.filter((task) => task.key === recipe.primaryTask)
+      return primaryOnly.length ? primaryOnly : base
+    }
+    if (recipe.secondaryTask) {
+      const allowed = new Set<TaskKey>([recipe.primaryTask as TaskKey, recipe.secondaryTask as TaskKey])
+      const narrowed = base.filter((task) => allowed.has(task.key))
+      return narrowed.length ? narrowed : base
+    }
+    return base
+  }, [recipe.primaryTask, recipe.secondaryTask, recipe.navbar])
   const primaryNavigation = navigation.slice(0, 5)
   const mobileNavigation = navigation.map((task) => ({
     name: task.label,
@@ -115,12 +126,11 @@ export function Navbar() {
         <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <div className="flex min-w-0 items-center gap-4">
             <Link href="/" className="flex shrink-0 items-center gap-3">
-              <div className={cn('flex h-12 w-12 items-center justify-center overflow-hidden p-1.5', palette.logo)}>
-                <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="48" height="48" className="h-full w-full object-contain" />
+              <div className={cn('flex h-14 max-w-[260px] items-center justify-center overflow-hidden px-2 py-1.5', palette.logo)}>
+                <img src="/favicon.png?v=20260418" alt={`${SITE_CONFIG.name} logo`} width="260" height="64" className="h-full w-auto max-h-12 object-contain object-left" />
               </div>
               <div className="min-w-0 hidden sm:block">
                 <span className="block truncate text-xl font-semibold">{SITE_CONFIG.name}</span>
-                <span className="block text-[10px] uppercase tracking-[0.24em] opacity-60">{siteContent.navbar.tagline}</span>
               </div>
             </Link>
 
@@ -207,30 +217,84 @@ export function Navbar() {
 
   return (
     <header className={cn('sticky top-0 z-50 w-full', style.shell)}>
-      <nav className={cn('mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8', isFloating ? 'h-24 pt-4' : 'h-20')}>
+      <nav
+        className={cn(
+          'mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 sm:px-6 lg:px-8',
+          isFloating ? 'h-24 pt-4' : isEditorial ? 'min-h-[5.25rem] py-2 sm:min-h-[5.75rem] sm:py-2.5' : 'h-20',
+        )}
+      >
         <div className="flex min-w-0 flex-1 items-center gap-4 lg:gap-7">
-          <Link href="/" className="flex shrink-0 items-center gap-3 whitespace-nowrap pr-2">
-            <div className={cn('flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden p-1.5', style.logo)}>
-              <img src="/favicon.png?v=20260401" alt={`${SITE_CONFIG.name} logo`} width="48" height="48" className="h-full w-full object-contain" />
-            </div>
-            <div className="min-w-0 hidden sm:block">
-              <span className="block truncate text-xl font-semibold">{SITE_CONFIG.name}</span>
-              <span className="hidden text-[10px] uppercase tracking-[0.28em] opacity-70 sm:block">{siteContent.navbar.tagline}</span>
-            </div>
+          <Link
+            href="/"
+            className={cn(
+              'flex shrink-0 items-center whitespace-nowrap pr-2',
+              isEditorial ? 'group min-w-0 gap-3 sm:gap-4 transition-[opacity,transform] duration-300 hover:opacity-[0.96] active:scale-[0.99]' : 'gap-3',
+            )}
+          >
+            {isEditorial ? (
+              <>
+                <div className="relative shrink-0">
+                  <div
+                    className="rounded-lg bg-gradient-to-br from-[#5e0006] via-[#9b0f06] to-[#d53e0f] p-px shadow-[0_12px_40px_-8px_rgba(94,0,6,0.38),0_2px_8px_-2px_rgba(213,62,15,0.25)] ring-1 ring-[color-mix(in_srgb,#fff_35%,transparent)]"
+                    aria-hidden
+                  >
+                    <div className="flex h-12 items-center rounded-[calc(0.5rem-1px)] bg-[linear-gradient(168deg,#fffefb_0%,#faf3ea_45%,#f3e8da_100%)] px-2.5 py-1.5 shadow-[inset_0_1px_0_rgba(255,255,255,0.92)] sm:h-14 sm:px-3 sm:py-2 lg:h-[3.75rem]">
+                      <img
+                        src="/favicon.png?v=20260418"
+                        alt=""
+                        width={280}
+                        height={64}
+                        className="h-9 w-auto max-w-[190px] object-contain object-left sm:h-11 sm:max-w-[240px] lg:h-[2.85rem] lg:max-w-[280px]"
+                        aria-hidden
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="hidden h-11 w-px shrink-0 bg-gradient-to-b from-transparent via-[color-mix(in_srgb,var(--ft-burgundy-deep)_28%,transparent)] to-transparent sm:h-12 lg:h-14 sm:block"
+                  aria-hidden
+                />
+                <div className="min-w-0">
+                  <span className="block truncate bg-gradient-to-r from-[#5e0006] via-[#9b0f06] to-[#7a0a08] bg-clip-text font-[family-name:var(--font-display)] text-[1.35rem] font-semibold leading-[1.1] tracking-[-0.03em] text-transparent sm:text-[1.55rem] lg:text-[1.7rem]">
+                    {SITE_CONFIG.name}
+                  </span>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className={cn('flex h-14 max-w-[280px] shrink-0 items-center justify-center overflow-hidden px-2 py-1.5', style.logo)}>
+                  <img
+                    src="/favicon.png?v=20260418"
+                    alt={`${SITE_CONFIG.name}`}
+                    width={280}
+                    height={64}
+                    className="h-full w-auto max-h-12 object-contain object-left"
+                  />
+                </div>
+                <div className="min-w-0 hidden sm:block">
+                  <span className="block truncate text-xl font-semibold">{SITE_CONFIG.name}</span>
+                </div>
+              </>
+            )}
           </Link>
 
           {isEditorial ? (
-            <div className="hidden min-w-0 flex-1 items-center gap-4 xl:flex">
-              <div className="h-px flex-1 bg-[#d8c8bb]" />
+            <div className="hidden min-w-0 flex-1 items-center justify-end gap-1 xl:flex">
               {primaryNavigation.map((task) => {
                 const isActive = pathname.startsWith(task.route)
                 return (
-                  <Link key={task.key} href={task.route} className={cn('text-sm font-semibold uppercase tracking-[0.18em] transition-colors', isActive ? 'text-[#2f1d16]' : 'text-[#7b6254] hover:text-[#2f1d16]')}>
+                  <Link
+                    key={task.key}
+                    href={task.route}
+                    className={cn(
+                      'rounded-sm px-3 py-2 text-[13px] font-semibold tracking-[0.04em] transition-colors duration-200',
+                      isActive ? style.active : style.idle,
+                    )}
+                  >
                     {task.label}
                   </Link>
                 )
               })}
-              <div className="h-px flex-1 bg-[#d8c8bb]" />
             </div>
           ) : isFloating ? (
             <div className="hidden min-w-0 flex-1 items-center gap-2 xl:flex">
@@ -280,12 +344,14 @@ export function Navbar() {
             </Link>
           ) : null}
 
-          <Button variant="ghost" size="icon" asChild className="hidden rounded-full md:flex">
-            <Link href="/search">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Link>
-          </Button>
+          {!isEditorial ? (
+            <Button variant="ghost" size="icon" asChild className="hidden rounded-full md:flex">
+              <Link href="/search">
+                <Search className="h-5 w-5" />
+                <span className="sr-only">Search</span>
+              </Link>
+            </Button>
+          ) : null}
 
           {isAuthenticated ? (
             <NavbarAuthControls />
@@ -295,7 +361,7 @@ export function Navbar() {
                 <Link href="/login">Sign In</Link>
               </Button>
               <Button size="sm" asChild className={style.cta}>
-                <Link href="/register">{isEditorial ? 'Subscribe' : isUtility ? 'Post Now' : 'Get Started'}</Link>
+                <Link href="/register">{isEditorial ? 'Start writing' : isUtility ? 'Post Now' : 'Get Started'}</Link>
               </Button>
             </div>
           )}
@@ -319,10 +385,12 @@ export function Navbar() {
       {isMobileMenuOpen && (
         <div className={style.mobile}>
           <div className="space-y-2 px-4 py-4">
-            <Link href="/search" onClick={() => setIsMobileMenuOpen(false)} className="mb-3 flex items-center gap-3 rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold text-muted-foreground">
-              <Search className="h-4 w-4" />
-              Search the site
-            </Link>
+            {!isEditorial ? (
+              <Link href="/search?master=1" onClick={() => setIsMobileMenuOpen(false)} className="mb-3 flex items-center gap-3 rounded-sm border border-border bg-card px-4 py-3 text-sm font-semibold text-muted-foreground">
+                <Search className="h-4 w-4" />
+                Search every format
+              </Link>
+            ) : null}
             {mobileNavigation.map((item) => {
               const isActive = pathname.startsWith(item.href)
               return (

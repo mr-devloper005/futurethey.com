@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Sparkles } from 'lucide-react'
+import { FileText, Building2, LayoutGrid, Tag, Github, Twitter, Linkedin, Image as ImageIcon, User, ArrowRight, Bookmark } from 'lucide-react'
 import { SITE_CONFIG, type TaskKey } from '@/lib/site-config'
 import { siteContent } from '@/config/site.content'
 import { getFactoryState } from '@/design/factory/get-factory-state'
@@ -8,7 +8,7 @@ import { FOOTER_OVERRIDE_ENABLED, FooterOverride } from '@/overrides/footer'
 const taskIcons: Record<TaskKey, any> = {
   article: FileText,
   listing: Building2,
-  sbm: LayoutGrid,
+  sbm: Bookmark,
   classified: Tag,
   image: ImageIcon,
   profile: User,
@@ -140,33 +140,38 @@ export function Footer() {
 
   if (recipe.footer === 'editorial-footer') {
     return (
-      <footer className="border-t border-[#dbc6b6] bg-[linear-gradient(180deg,#fff9f0_0%,#fff1df_100%)] text-[#2f1d16]">
-        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-          <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr_0.9fr]">
+      <footer className="border-t border-[color-mix(in_srgb,var(--ft-burgundy-deep)_16%,transparent)] bg-[linear-gradient(180deg,#fffdf8_0%,#f4e8d8_100%)] text-[var(--ft-ink)]">
+        <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+          <div className="grid gap-12 lg:grid-cols-[1.15fr_minmax(12rem,16rem)] lg:items-start lg:justify-between">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-[#dbc6b6] bg-white px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#72594a]">
-                <Sparkles className="h-3.5 w-3.5" />
-                Editorial desk
+              <div className="inline-flex items-center gap-2 rounded-sm border border-[color-mix(in_srgb,var(--ft-burgundy-deep)_14%,transparent)] bg-[color-mix(in_srgb,var(--ft-cream)_35%,#fff)] px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--ft-burgundy)]">
+                <FileText className="h-3.5 w-3.5" />
+                Publication
               </div>
-              <h3 className="mt-5 text-3xl font-semibold tracking-[-0.04em]">{SITE_CONFIG.name}</h3>
-              <p className="mt-4 max-w-md text-sm leading-7 text-[#72594a]">{SITE_CONFIG.description}</p>
+              <h3 className="mt-5 font-[family-name:var(--font-display)] text-3xl font-semibold tracking-[-0.03em]">{SITE_CONFIG.name}</h3>
+              <p className="mt-4 max-w-md text-sm leading-7 text-[color-mix(in_srgb,var(--ft-ink)_62%,#fff)]">{SITE_CONFIG.description}</p>
+              {primaryTask ? (
+                <Link
+                  href={primaryTask.route}
+                  className="mt-6 inline-flex items-center gap-2 rounded-sm bg-[var(--ft-burgundy)] px-4 py-2.5 text-sm font-semibold text-[var(--ft-cream)] shadow-[0_12px_32px_rgba(94,0,6,0.18)] transition hover:bg-[var(--ft-ember)]"
+                >
+                  Open {primaryTask.label}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              ) : null}
             </div>
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Sections</h4>
-              <ul className="mt-4 space-y-3 text-sm">
-                {footerLinks.platform.map((item: any) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
-                ))}
-              </ul>
+            <div className="flex flex-col items-start gap-3 lg:items-end lg:pt-2">
+              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--ft-burgundy)]">Company</h4>
+              <Link
+                href="/about"
+                className="text-sm font-semibold text-[var(--ft-burgundy)] underline-offset-4 hover:text-[var(--ft-burgundy-deep)] hover:underline"
+              >
+                About
+              </Link>
             </div>
-            <div>
-              <h4 className="text-xs font-semibold uppercase tracking-[0.24em] text-[#8b6d5a]">Company</h4>
-              <ul className="mt-4 space-y-3 text-sm">
-                {footerLinks.company.map((item) => (
-                  <li key={item.name}><Link href={item.href} className="hover:text-[#2f1d16]">{item.name}</Link></li>
-                ))}
-              </ul>
-            </div>
+          </div>
+          <div className="mt-12 border-t border-[color-mix(in_srgb,var(--ft-burgundy-deep)_10%,transparent)] pt-6 text-center text-xs text-[color-mix(in_srgb,var(--ft-ink)_55%,#fff)]">
+            &copy; {new Date().getFullYear()} {SITE_CONFIG.name}. Crafted for long-form reading.
           </div>
         </div>
       </footer>

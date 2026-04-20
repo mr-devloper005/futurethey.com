@@ -37,6 +37,7 @@ export type SiteFactoryRecipe = {
   homeLayout: HomeLayoutKey
   motionPack: MotionPackKey
   primaryTask: TaskKey
+  secondaryTask?: TaskKey
   enabledTasks: TaskKey[]
   taskLayouts: Partial<Record<TaskKey, TaskLayoutKey>>
 }
