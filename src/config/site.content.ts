@@ -2,110 +2,117 @@ import type { TaskKey } from '@/lib/site-config'
 
 export const siteContent = {
   navbar: {
-    tagline: 'Independent reading platform',
+    tagline: 'Future They · editorial desk',
   },
   footer: {
-    tagline: 'Stories, resources, and discoverable posts',
+    tagline: 'Independent journalism & slow reads',
   },
   hero: {
-    badge: 'Latest stories and visuals',
-    title: ['A thoughtful home for', 'stories, visuals, and discovery.'],
+    badge: 'Published weekly',
+    title: ['Stories that stay', 'with you after the tab closes.'],
     description:
-      'Explore fresh articles, image-led posts, and discoverable content across the platform through a calmer and clearer browsing experience.',
+      'Future They is a small desk in Mumbai and remote contributors worldwide. We chase one good question per story—whether it is about housing, hiring, or how culture moves online.',
     primaryCta: {
-      label: 'Read latest stories',
+      label: 'Read this week’s cover',
       href: '/articles',
     },
     secondaryCta: {
-      label: 'Explore visuals',
-      href: '/images',
+      label: 'See what we are filing next',
+      href: '/about',
     },
-    searchPlaceholder: 'Search stories, visuals, listings, and more',
+    searchPlaceholder: 'Search essays, profiles, PDFs, and archives…',
     focusLabel: 'Focus',
-    featureCardBadge: 'latest cover rotation',
-    featureCardTitle: 'Latest posts shape the visual identity of the homepage.',
+    featureCardBadge: 'From the desk',
+    featureCardTitle: 'Every edition opens with one lead story.',
     featureCardDescription:
-      'Recent images and stories stay at the center of the experience without changing any core platform behavior.',
+      'The rest of the issue stacks essays, photo reports, and reader mail—so you always know where to start.',
   },
   home: {
     metadata: {
-      title: 'Stories, visuals, and discoverable content',
+      title: 'Future They — essays, culture, and the next decade',
       description:
-        'Explore articles, images, listings, and curated posts through a cleaner reading-first experience.',
-      openGraphTitle: 'Stories, visuals, and discoverable content',
+        'Independent magazine-style writing on work, cities, and technology—edited for readers who still read to the end.',
+      openGraphTitle: 'Future They — essays, culture, and the next decade',
       openGraphDescription:
-        'Discover articles, visual posts, and connected content through a calmer reading-first experience.',
-      keywords: ['story platform', 'article site', 'visual content', 'content discovery'],
+        'Long-form reporting and essays from Mumbai and friends abroad. Subscribe for new issues.',
+      keywords: [
+        'Future They',
+        'magazine',
+        'essays India',
+        'culture writing',
+        'longform journalism',
+        'Mumbai editorial',
+      ],
     },
-    introBadge: 'About the platform',
-    introTitle: 'Built for reading, browsing, and connecting different kinds of content.',
+    introBadge: 'About Future They',
+    introTitle: 'We are stubborn about clarity.',
     introParagraphs: [
-      'This site brings together article-style reading, visual browsing, and structured discovery so visitors can move naturally between different content types.',
-      'Instead of separating stories, visuals, and supporting resources into disconnected surfaces, the platform keeps them connected in one place with consistent navigation and easier exploration.',
-      'Whether someone starts with a story, an image-led post, a listing, or a resource page, they can keep discovering related content without friction.',
+      'Future They started as a weekend newsletter between friends in Bandra and Bangalore. Today it is a full site for slower stories: explainers, reported features, and the occasional rant that survived three edits.',
+      'We still fact-check phone numbers, call people back, and link to primary sources when we can. If a line feels clever but untrue, it does not ship.',
+      'Listings, classifieds, PDFs, and profiles live here too—mostly because readers asked for one place to find everything after they finish an essay.',
     ],
-    sideBadge: 'At a glance',
+    sideBadge: 'Desk notes',
     sidePoints: [
-      'Reading-first homepage with stronger emphasis on stories and imagery.',
-      'Connected sections for articles, visuals, listings, and supporting resources.',
-      'Cleaner browsing rhythm designed to make exploration feel easier.',
-      'Lightweight interactions that keep the experience fast and readable.',
+      'Typographic layout tuned for 18–22 minute reads on phone or laptop.',
+      'Cover story + reading index on the homepage every refresh.',
+      'Motion is minimal: fades only, no scroll-jacking.',
+      'Search spans every format when you need a needle in the archive.',
     ],
     primaryLink: {
-      label: 'Browse articles',
+      label: 'Start with articles',
       href: '/articles',
     },
     secondaryLink: {
-      label: 'See visuals',
-      href: '/images',
+      label: 'Meet the team',
+      href: '/team',
     },
   },
   cta: {
-    badge: 'Start exploring',
-    title: 'Explore articles, visuals, and resources through one connected experience.',
+    badge: 'Write with us',
+    title: 'Pitch a story or subscribe for the next drop.',
     description:
-      'Move between articles, image-led posts, listings, and resources through one clearer and more connected visual system.',
+      'Send a one-paragraph idea, two clips you are proud of, and how you would report it. We reply within five working days when the desk is staffed.',
     primaryCta: {
-      label: 'Get Started Free',
+      label: 'Create free account',
       href: '/register',
     },
     secondaryCta: {
-      label: 'Contact Sales',
+      label: 'Talk with the team',
       href: '/contact',
     },
   },
   taskSectionHeading: 'Latest {label}',
-  taskSectionDescriptionSuffix: 'Browse the newest posts in this section.',
+  taskSectionDescriptionSuffix: 'New entries from this desk, refreshed often.',
 } as const
 
 export const taskPageMetadata: Record<Exclude<TaskKey, 'comment' | 'org' | 'social'>, { title: string; description: string }> = {
   article: {
-    title: 'Articles and stories',
-    description: 'Read articles, stories, guides, and long-form posts across topics and interests.',
+    title: 'Articles & essays',
+    description: 'Reported features, explainers, and opinion filed by our writers and contributors.',
   },
   listing: {
-    title: 'Listings and discoverable pages',
-    description: 'Explore listings, services, brands, and structured pages organized for easier browsing.',
+    title: 'Places & studios',
+    description: 'Print shops, cafés, archives, and small businesses we have called or visited.',
   },
   classified: {
-    title: 'Classifieds and announcements',
-    description: 'Browse classifieds, offers, notices, and time-sensitive posts across categories.',
+    title: 'Classifieds',
+    description: 'Housing, gear, gigs, and short notices from readers and partner desks.',
   },
   image: {
-    title: 'Images and visual posts',
-    description: 'Explore image-led posts, galleries, and visual stories from across the platform.',
+    title: 'Photo desk',
+    description: 'Photo essays, contact sheets, and visual reporting from the field.',
   },
   profile: {
-    title: 'Profiles and public pages',
-    description: 'Discover public profiles, brand pages, and identity-focused posts in one place.',
+    title: 'People & bylines',
+    description: 'Staff, freelancers, interns, and collaborators behind the stories.',
   },
   sbm: {
-    title: 'Curated links and saved resources',
-    description: 'Browse useful links, saved references, and curated resources organized for discovery.',
+    title: 'Reading shelf',
+    description: 'Links, PDFs, and rabbit holes we are saving for the next issue.',
   },
   pdf: {
-    title: 'PDFs and downloadable resources',
-    description: 'Open reports, documents, and downloadable resources shared across the platform.',
+    title: 'Documents & downloads',
+    description: 'Style drafts, data drops, and printable companions to our reporting.',
   },
 }
 
@@ -114,11 +121,11 @@ export const taskIntroCopy: Record<
   { title: string; paragraphs: string[]; links: { label: string; href: string }[] }
 > = {
   listing: {
-    title: 'Listings, services, and structured pages',
+    title: 'Studios, venues, and small businesses',
     paragraphs: [
-      'Explore listings, services, brands, and discoverable pages across categories. Each entry is organized to make browsing clearer and help visitors quickly understand what a post offers.',
-      'Listings connect naturally with articles, images, resources, and other content types so supporting information stays easy to reach from the same platform.',
-      'Browse by category to compare posts in context, discover related content, and move between formats without losing your place.',
+      'These listings are the physical world behind our stories: letterpress shops, running clubs, archives, and neighbourhood cafés where interviews happen.',
+      'We verify phone numbers when we can and note last-checked dates in the listing body—this is dummy data for now, but the workflow mirrors how we work.',
+      'Jump from a listing to related essays, photo essays, or classifieds when the same beat overlaps.',
     ],
     links: [
       { label: 'Read articles', href: '/articles' },
@@ -127,76 +134,71 @@ export const taskIntroCopy: Record<
     ],
   },
   article: {
-    title: 'Articles, stories, and long-form reading',
+    title: 'The main magazine',
     paragraphs: [
-      'This section is built for stories, explainers, guides, and long-form reading across topics and interests.',
-      'Articles connect with listings, images, resources, and other content types so deeper reading can lead naturally into related discovery.',
-      'Use this section to browse thoughtful posts, revisit useful writing, and move into supporting content when you want more context.',
+      'This is where Future They lives: 2,000–6,000 word pieces with editors, line edits, and legal read when needed.',
+      'Browse by category or search the archive; slugs stay stable so you can cite us in newsletters and footnotes.',
     ],
-    links: [
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open images', href: '/images' },
-      { label: 'Browse resources', href: '/pdf' },
-    ],
+    links: [],
   },
   classified: {
-    title: 'Classifieds, offers, and timely updates',
+    title: 'Short notices & gigs',
     paragraphs: [
-      'Classified posts help surface offers, notices, deals, and time-sensitive opportunities in a faster-scanning format.',
-      'They work well alongside articles, listings, and profiles, making it easier to connect short-term posts with more structured content.',
-      'Browse by category to find announcements quickly, then continue into related sections when you need more detail.',
+      'Classifieds are reader-sourced: sublets, gear, micro-gigs, and the odd “looking for a co-author” post.',
+      'We moderate for scams and duplicate posts; response times are faster on weekdays.',
+      'Pair classifieds with listings when someone is hiring inside a studio we already profiled.',
     ],
     links: [
-      { label: 'Business listings', href: '/listings' },
+      { label: 'Places & studios', href: '/listings' },
       { label: 'Read articles', href: '/articles' },
       { label: 'View profiles', href: '/profile' },
     ],
   },
   image: {
-    title: 'Image-led posts and visual stories',
+    title: 'Photo essays & contact sheets',
     paragraphs: [
-      'Images take the lead in this section through galleries, visual posts, and story-led content where imagery carries the experience.',
-      'These posts connect with articles, listings, and other sections so visuals can act as entry points into deeper content.',
-      'Browse the latest visual updates, then continue into related stories or supporting pages for more context.',
+      'Our photographers file sequences, not single hero shots—captions carry legal names, locations, and consent notes.',
+      'Image posts often pair with a long article; start here when you want the story told through light and colour first.',
+      'Dummy galleries below mimic how we tag beats: cities, labour, climate, culture.',
     ],
     links: [
       { label: 'Read articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
-      { label: 'Open classifieds', href: '/classifieds' },
+      { label: 'Places & studios', href: '/listings' },
+      { label: 'Classifieds', href: '/classifieds' },
     ],
   },
   profile: {
-    title: 'Profiles, identities, and public pages',
+    title: 'Bylines & partner desks',
     paragraphs: [
-      'Profiles capture the identity behind a business, creator, brand, or project and help visitors understand who is behind the content they are exploring.',
-      'These pages work as trust anchors across the site and connect naturally with stories, listings, documents, and other post types.',
-      'Browse profiles to understand people and brands more clearly, then continue into related content from the same source.',
+      'Staff pages list beats and contact routes; freelancer profiles show recent clips and time zones.',
+      'We treat profiles as accountability surfaces—you always know who edited a line or took a portrait.',
+      'Partner desks (guilds, wires, archives) appear here when we co-publish or share syndication.',
     ],
     links: [
-      { label: 'Open listings', href: '/listings' },
+      { label: 'Places & studios', href: '/listings' },
       { label: 'Read articles', href: '/articles' },
-      { label: 'Browse images', href: '/images' },
+      { label: 'Photo desk', href: '/images' },
     ],
   },
   sbm: {
-    title: 'Curated links and bookmarked resources',
+    title: 'The reading shelf',
     paragraphs: [
-      'This section collects useful links, references, tools, and saved resources in a text-first browsing format.',
-      'Bookmarks stay connected to the rest of the platform, making it easier to move from a saved link into related stories, listings, or resources.',
-      'Use this section to organize helpful sources and discover connected content without leaving the broader site experience.',
+      'Editors dump primary sources, court filings, rival reporting, and stray PDFs here while a story is in motion.',
+      'Once an issue ships, we prune dead links and add a one-line note on what changed.',
+      'Think of it as the bibliography tab—still dummy data, but structured like a real newsroom.',
     ],
     links: [
       { label: 'Browse articles', href: '/articles' },
-      { label: 'Explore listings', href: '/listings' },
+      { label: 'Places & studios', href: '/listings' },
       { label: 'Open PDFs', href: '/pdf' },
     ],
   },
   pdf: {
-    title: 'PDFs, documents, and downloadable files',
+    title: 'Downloads & data drops',
     paragraphs: [
-      'The PDF library hosts reports, guides, downloadable files, and longer-form document resources that support reading and discovery.',
-      'These resources work alongside stories, listings, and profiles, helping document-style content stay connected to the rest of the platform.',
-      'Browse by category to find relevant files quickly, then continue into related sections when you want more context.',
+      'FOI responses, flatplans, survey tabs, and redlined style guides land as PDFs so lawyers and designers share one file.',
+      'We watermark sensitive drafts “internal” even on staging—habit beats regret.',
+      'Pair a PDF with its parent article when numbers or maps are easier to print than scroll.',
     ],
     links: [
       { label: 'Read articles', href: '/articles' },
@@ -205,24 +207,24 @@ export const taskIntroCopy: Record<
     ],
   },
   social: {
-    title: 'Short updates and community signals',
+    title: 'Newsroom wire & desk notes',
     paragraphs: [
-      'Short updates add quick signals that keep activity flowing across the platform.',
-      'They work well with stories, listings, and resources by helping visitors move from brief updates into deeper content.',
-      'Use these posts as lightweight entry points into the broader site experience.',
+      'Short posts mirror Slack announcements: deadline shifts, correction flags, hiring calls.',
+      'They age quickly—do not treat them as canonical; the essay or correction note is the record.',
+      'Use this feed when you want the pulse of the desk without opening social apps.',
     ],
     links: [
-      { label: 'Open listings', href: '/listings' },
+      { label: 'Places & studios', href: '/listings' },
       { label: 'Read articles', href: '/articles' },
       { label: 'View PDFs', href: '/pdf' },
     ],
   },
   comment: {
-    title: 'Comments and contextual responses',
+    title: 'Letters & threaded replies',
     paragraphs: [
-      'Comments surface responses connected directly to articles and help keep discussion close to the writing it belongs to.',
-      'This layer adds perspective and reaction without needing a separate standalone content format.',
-      'Use comments as supporting context beneath stories, then continue exploring related content from the same topic area.',
+      'We publish letters that add reporting, dispute a framing, or share first-person context—edited for length and clarity.',
+      'Threads stay attached to the originating article so context does not float away.',
+      'Aggressive or anonymous pile-ons get cut; this section is for good-faith argument.',
     ],
     links: [
       { label: 'Explore articles', href: '/articles' },
@@ -231,14 +233,14 @@ export const taskIntroCopy: Record<
     ],
   },
   org: {
-    title: 'Organizations, teams, and structured entities',
+    title: 'Guilds, clubs, and partner orgs',
     paragraphs: [
-      'Organization pages provide structured identity surfaces for teams, brands, communities, and agencies.',
-      'Used with listings, stories, profiles, and resources, they help create stronger structure across the platform.',
-      'Connect organization pages with related content to build a clearer and more unified site presence.',
+      'Future They sits inside a wider ecosystem of unions, press clubs, and nonprofit archives.',
+      'Organisation pages list how we collaborate: syndication rules, shared bylines, joint events.',
+      'Dummy orgs below are named after real institution types—swap in live partners when contracts allow.',
     ],
     links: [
-      { label: 'Business listings', href: '/listings' },
+      { label: 'Places & studios', href: '/listings' },
       { label: 'Read articles', href: '/articles' },
       { label: 'PDF library', href: '/pdf' },
     ],
