@@ -250,44 +250,44 @@ export function ArticleComments({ slug }: { slug: string }) {
         Comments
       </div>
 
-      <form onSubmit={handleSubmit} className="mt-6 rounded-2xl border border-border bg-white p-5 shadow-sm">
-        <div className="space-y-2">
-          <label htmlFor="comment-body" className="text-sm font-medium text-foreground">
-            Add a comment
+      <form onSubmit={handleSubmit} className="mt-6 rounded-2xl border-2 border-dashed border-[var(--ft-burgundy)] bg-[color-mix(in_srgb,var(--ft-cream)_20%,transparent)] p-6 shadow-lg">
+        <div className="space-y-3">
+          <label htmlFor="comment-body" className="text-base font-bold text-[var(--ft-burgundy-deep)]">
+            Share your thoughts
           </label>
           <Textarea
             id="comment-body"
             value={commentBody}
             onChange={(event) => setCommentBody(event.target.value)}
-            placeholder="Write your comment here"
-            className="min-h-28"
+            placeholder="What's on your mind? Join the conversation..."
+            className="min-h-32 border-2 border-[color-mix(in_srgb,var(--ft-burgundy)_30%,transparent)] bg-white/80 font-medium text-[var(--ft-ink)] placeholder:text-[color-mix(in_srgb,var(--ft-ink)_50%,transparent)] focus:border-[var(--ft-burgundy)] focus:ring-2 focus:ring-[color-mix(in_srgb,var(--ft-burgundy)_20%,transparent)]"
             maxLength={2000}
             disabled={limitReached}
           />
         </div>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-          <div className="space-y-1">
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-4">
+          <div className="space-y-2">
             <div
-              className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${
+              className={`inline-flex rounded-full px-4 py-2 text-sm font-bold ${
                 limitReached
-                  ? "bg-destructive/10 text-destructive"
+                  ? "bg-destructive/15 text-destructive border border-destructive/30"
                   : remainingToday <= 3
-                    ? "bg-amber-100 text-amber-700"
-                    : "bg-primary/10 text-primary"
+                    ? "bg-amber-100 text-amber-800 border border-amber-300/50"
+                    : "bg-[color-mix(in_srgb,var(--ft-burgundy)_10%,transparent)] text-[var(--ft-burgundy-deep)] border border-[var(--ft-burgundy)/30]"
               }`}
             >
               {limitReached
                 ? `Daily limit reached: ${DAILY_COMMENT_LIMIT}/${DAILY_COMMENT_LIMIT}`
                 : `${remainingToday} of ${DAILY_COMMENT_LIMIT} comments left today`}
             </div>
-            <p className="text-xs text-muted-foreground">
+            <p className="text-sm text-muted-foreground font-medium">
               {limitReached
                 ? `You can publish again after ${resetLabel}.`
                 : `Limit resets after ${resetLabel}.`}
             </p>
           </div>
-          <Button type="submit" disabled={limitReached}>
-            Publish Comment
+          <Button type="submit" disabled={limitReached} className="bg-[var(--ft-burgundy)] hover:bg-[var(--ft-burgundy-deep)] text-white font-bold px-6 py-2 rounded-full border-2 border-[var(--ft-burgundy-deep)]">
+            Post Comment
           </Button>
         </div>
         {formError ? <p className="mt-3 text-sm text-destructive">{formError}</p> : null}
@@ -301,23 +301,22 @@ export function ArticleComments({ slug }: { slug: string }) {
               <div
                 key={comment.id}
                 id={`comment-${comment.id}`}
-                className={`rounded-2xl border p-4 ${
-                  isHighlighted ? "border-primary/50 bg-primary/5" : "border-border bg-white"
+                className={`rounded-2xl border-2 p-5 ${
+                  isHighlighted 
+                    ? "border-[var(--ft-burgundy)] bg-[color-mix(in_srgb,var(--ft-cream)_30%,transparent)] shadow-lg" 
+                    : "border-[color-mix(in_srgb,var(--ft-burgundy)_20%,transparent)] bg-white/70 backdrop-blur-sm shadow-md"
                 }`}
               >
                 <div className="flex items-center justify-between gap-3">
                   <div>
-                    <p className="text-sm font-semibold text-foreground">{comment.authorName}</p>
+                    <p className="text-base font-bold text-[var(--ft-burgundy-deep)]">{comment.authorName}</p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(comment.createdAt).toLocaleDateString()}
-                    </p>
                     {comment.source === "local" ? (
                       <button
                         type="button"
                         onClick={() => handleDeleteLocalComment(comment.id)}
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-border text-muted-foreground transition hover:border-destructive/30 hover:bg-destructive/5 hover:text-destructive"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-[var(--ft-burgundy)/30] text-[var(--ft-burgundy)] transition hover:border-destructive/30 hover:bg-destructive/5 hover:text-destructive"
                         aria-label="Delete local comment"
                       >
                         <Trash2 className="h-4 w-4" />
