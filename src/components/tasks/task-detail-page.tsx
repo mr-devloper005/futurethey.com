@@ -229,7 +229,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
 
   if (productKind === "directory" && (task === "listing" || task === "classified" || task === "profile")) {
     return (
-      <div className="min-h-screen bg-[#f8fbff]">
+      <div className="min-h-screen bg-[#f8fbff]" data-ft-detail={task}>
         <NavbarShell />
         <DirectoryTaskDetailPage
           task={task}
@@ -248,7 +248,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background" data-ft-detail={task}>
       <NavbarShell />
       <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
         <SchemaJsonLd data={schemaPayload} />
@@ -267,8 +267,8 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
         >
           <div className={cn(isClassified ? "space-y-8" : "")}>
             {isArticle ? (
-              <div className="mx-auto w-full max-w-4xl space-y-6">
-                <h1 className="text-4xl font-semibold leading-tight text-foreground">
+              <div className="mx-auto w-full max-w-4xl space-y-8 rounded-sm border border-[color-mix(in_srgb,var(--ft-burgundy-deep)_10%,transparent)] bg-[color-mix(in_srgb,#fff_94%,var(--ft-cream))] p-6 shadow-[0_24px_60px_rgba(94,0,6,0.06)] sm:p-10">
+                <h1 className="font-[family-name:var(--font-display)] text-4xl font-semibold leading-[1.12] tracking-[-0.03em] text-foreground sm:text-[2.65rem]">
                   {post.title}
                 </h1>
                 <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-muted-foreground">
@@ -292,7 +292,7 @@ export async function TaskDetailPage({ task, slug }: { task: TaskKey; slug: stri
                   <p className="text-base leading-7 text-muted-foreground">{articleSummary}</p>
                 ) : null}
                 {images[0] ? (
-                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl border border-border bg-muted">
+                  <div className="relative aspect-[16/9] w-full overflow-hidden rounded-sm border border-[color-mix(in_srgb,var(--ft-burgundy-deep)_12%,transparent)] bg-muted shadow-inner">
                     <ContentImage
                       src={images[0]}
                       alt={`${post.title} featured image`}

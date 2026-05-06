@@ -107,8 +107,9 @@ export default async function SearchPage({
           })}
         </div>
       ) : (
-        <div className="rounded-2xl border border-dashed border-border p-10 text-center text-muted-foreground">
-          No matching posts yet.
+        <div className="rounded-sm border border-dashed border-[color-mix(in_srgb,var(--ft-burgundy-deep)_18%,transparent)] bg-[color-mix(in_srgb,var(--ft-cream)_18%,#fff)] p-12 text-center text-muted-foreground">
+          <p className="text-sm font-medium text-foreground/80">No matching posts yet.</p>
+          <p className="mt-2 text-sm opacity-80">Try a shorter query or browse by task from the footer.</p>
         </div>
       )}
     </PageShell>

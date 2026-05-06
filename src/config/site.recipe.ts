@@ -8,9 +8,11 @@ export const SITE_RECIPE: SiteRecipe = {
   footerTemplate: 'editorial-footer',
   motionPack: 'editorial-soft',
   primaryTask: 'article',
-  enabledTasks: ['article'],
+  secondaryTask: 'sbm',
+  enabledTasks: ['article', 'sbm'],
   taskTemplates: {
-    article: 'article-journal'
+    article: 'article-journal',
+    sbm: 'sbm-library',
   },
   manualOverrides: {
     navbar: false,
