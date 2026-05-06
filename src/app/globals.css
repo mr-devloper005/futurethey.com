@@ -1,13 +1,11 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
-@import '../../public/fonts/manrope.css';
-@import '../../public/fonts/fraunces.css';
+@import '../../public/fonts/shrikhand.css';
 
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-manrope: 'Manrope', system-ui, sans-serif;
-  --font-fraunces: 'Fraunces', ui-serif, Georgia, 'Times New Roman', serif;
+  --font-shrikhand: 'Shrikhand', cursive;
   --ft-burgundy-deep: #5e0006;
   --ft-burgundy: #9b0f06;
   --ft-ember: #d53e0f;
@@ -85,9 +83,9 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-sans: var(--font-shrikhand), cursive;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
-  --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
+  --font-display: var(--font-shrikhand), cursive;
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -163,8 +161,38 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-display);
+    font-family: var(--font-shrikhand), cursive;
     letter-spacing: -0.03em;
+    color: var(--ft-burgundy-deep);
+  }
+
+  h5,
+  h6 {
+    font-family: var(--font-shrikhand), cursive;
+    letter-spacing: -0.02em;
+    color: var(--ft-burgundy);
+  }
+
+  p,
+  span,
+  div {
+    color: var(--foreground);
+  }
+
+  .title {
+    color: var(--ft-burgundy-deep);
+  }
+
+  .subtitle {
+    color: var(--ft-burgundy);
+  }
+
+  .text-primary {
+    color: var(--primary);
+  }
+
+  .text-secondary {
+    color: var(--secondary-foreground);
   }
 
   p,
@@ -172,7 +200,7 @@
   input,
   button,
   textarea {
-    font-family: var(--font-sans);
+    font-family: var(--font-shrikhand), cursive;
   }
 
   ::selection {
@@ -251,10 +279,57 @@
   font-weight: 700;
   line-height: 1.35;
   margin: 1.5rem 0 0.75rem;
+  color: var(--ft-burgundy-deep);
+}
+
+.article-content h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1.2rem 0 0.6rem;
+  color: var(--ft-burgundy);
+}
+
+.article-content h5 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 1rem 0 0.5rem;
+  color: var(--ft-burgundy);
+}
+
+.article-content h6 {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0.8rem 0 0.4rem;
+  color: var(--ft-burgundy);
 }
 
 .article-content p {
   margin: 1rem 0 1.25rem;
+  color: var(--foreground);
+  line-height: 1.7;
+}
+
+.article-content blockquote {
+  margin: 1.5rem 0;
+  padding-left: 1.5rem;
+  border-left: 4px solid var(--ft-burgundy);
+  color: var(--ft-ink);
+  font-style: italic;
+}
+
+.article-content ul,
+.article-content ol {
+  margin: 1rem 0 1.25rem;
+  color: var(--foreground);
+  line-height: 1.6;
+}
+
+.article-content li {
+  margin: 0.5rem 0;
+  color: var(--foreground);
 }
 
 .article-content a {
@@ -332,7 +407,18 @@ body[data-site-shell="market"] {
 .factory-font-editorial h2,
 .factory-font-editorial h3,
 .factory-font-editorial h4 {
-  font-family: var(--font-display);
+  font-family: var(--font-shrikhand), cursive;
+  color: var(--ft-burgundy-deep);
+}
+
+.factory-font-editorial h5,
+.factory-font-editorial h6 {
+  font-family: var(--font-shrikhand), cursive;
+  color: var(--ft-burgundy);
+}
+
+.factory-font-editorial p {
+  color: var(--foreground);
 }
 
 .factory-font-directory h1,
@@ -343,15 +429,41 @@ body[data-site-shell="market"] {
 .factory-font-market h2,
 .factory-font-market h3,
 .factory-font-market h4 {
-  font-family: var(--font-sans);
+  font-family: var(--font-shrikhand), cursive;
+  color: var(--ft-burgundy-deep);
+}
+
+.factory-font-directory h5,
+.factory-font-directory h6,
+.factory-font-market h5,
+.factory-font-market h6 {
+  font-family: var(--font-shrikhand), cursive;
+  color: var(--ft-burgundy);
+}
+
+.factory-font-directory p,
+.factory-font-market p {
+  color: var(--foreground);
 }
 
 .factory-font-studio h1,
 .factory-font-studio h2,
 .factory-font-studio h3,
 .factory-font-studio h4 {
-  font-family: var(--font-sans);
+  font-family: var(--font-shrikhand), cursive;
   letter-spacing: -0.05em;
+  color: var(--ft-burgundy-deep);
+}
+
+.factory-font-studio h5,
+.factory-font-studio h6 {
+  font-family: var(--font-shrikhand), cursive;
+  letter-spacing: -0.04em;
+  color: var(--ft-burgundy);
+}
+
+.factory-font-studio p {
+  color: var(--foreground);
 }
 
 body[data-motion-pack='studio-stagger'] main section {
