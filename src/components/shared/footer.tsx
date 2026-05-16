@@ -168,6 +168,12 @@ export function Footer() {
               >
                 About
               </Link>
+              <Link
+                href="/contact"
+                className="text-sm font-semibold text-[var(--ft-burgundy)] underline-offset-4 hover:text-[var(--ft-burgundy-deep)] hover:underline"
+              >
+                Contact
+              </Link>
             </div>
           </div>
           <div className="mt-12 border-t border-[color-mix(in_srgb,var(--ft-burgundy-deep)_10%,transparent)] pt-6 text-center text-xs text-[color-mix(in_srgb,var(--ft-ink)_55%,#fff)]">

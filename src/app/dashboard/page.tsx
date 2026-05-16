@@ -17,7 +17,6 @@ import {
   Plus,
   ArrowRight,
   Calendar,
-  Bell,
   Settings,
   ChevronRight,
   MoreHorizontal,
@@ -269,11 +268,6 @@ export default function DashboardPage() {
             </p>
           </div>
           <div className="flex gap-3">
-                <Button variant="outline" size="icon" asChild>
-                  <Link href="/dashboard/notifications">
-                    <Bell className="h-4 w-4" />
-                  </Link>
-                </Button>
             <Button variant="outline" size="icon" asChild>
               <Link href="/settings">
                 <Settings className="h-4 w-4" />
