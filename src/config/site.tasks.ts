@@ -45,7 +45,7 @@ export const siteTaskDefinitions = [
     route: '/sbm',
     description: 'Sources and rabbit holes behind each cover story.',
     contentType: 'sbm',
-    enabled: true,
+    enabled: false,
   },
   {
     key: 'comment',
